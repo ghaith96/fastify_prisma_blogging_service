@@ -1,0 +1,34 @@
+{
+  "name": "fastify_playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev --respawn --transpile-only --exit-child --watch src src/server.ts --cls | pino-pretty -c",
+    "postinstall": "npx typesync",
+    "prisma:migrate": "npx prisma migrate dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:debug": "ts-node-dev --transpile-only --respawn --inspect=4321 --project tsconfig.json src/server.ts",
+    "dev": "ts-node-dev --transpile-only --respawn --project tsconfig.json src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/auth": "^4.0.0",
+    "@prisma/client": "^4.3.0",
+    "bcrypt": "^5.0.1",
+    "fastify": "^4.5.3",
+    "fastify-plugin": "^4.2.1",
+    "prisma": "^4.3.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^10.0.28-alpha",
+    "@types/node": "^16.4.2",
+    "pino-pretty": "^9.1.0",
+    "prisma-json-schema-generator": "^3.1.1",
+    "ts-node-dev": "^2.0.0"
+  }
+}

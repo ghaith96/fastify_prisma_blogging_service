@@ -1,0 +1,148 @@
+{
+  "$id": "schema",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "password": {
+          "type": "string"
+        },
+        "posts": {
+          "type": "array",
+          "items": {
+            "$ref": "schema#/definitions/Post"
+          }
+        },
+        "Comment": {
+          "type": "array",
+          "items": {
+            "$ref": "schema#/definitions/Comment"
+          }
+        },
+        "Token": {
+          "type": "array",
+          "items": {
+            "$ref": "schema#/definitions/Token"
+          }
+        }
+      }
+    },
+    "Post": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "published": {
+          "type": "boolean",
+          "default": false
+        },
+        "viewCount": {
+          "type": "integer",
+          "default": 0
+        },
+        "User": {
+          "$ref": "schema#/definitions/User"
+        },
+        "Comment": {
+          "type": "array",
+          "items": {
+            "$ref": "schema#/definitions/Comment"
+          }
+        }
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "content": {
+          "type": "string"
+        },
+        "post": {
+          "$ref": "schema#/definitions/Post"
+        },
+        "user": {
+          "$ref": "schema#/definitions/User"
+        }
+      }
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "refreshToken": {
+          "type": "string"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastAcccessed": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "user": {
+          "$ref": "schema#/definitions/User"
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "schema#/definitions/User"
+    },
+    "post": {
+      "$ref": "schema#/definitions/Post"
+    },
+    "comment": {
+      "$ref": "schema#/definitions/Comment"
+    },
+    "token": {
+      "$ref": "schema#/definitions/Token"
+    }
+  }
+}

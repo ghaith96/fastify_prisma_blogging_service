@@ -1,0 +1,66 @@
+@HOST=http://localhost:3000
+@EMAIL=dr.livesey@email.com
+@PASSWORD=superSECRETstrongPASSWORD_1$$7
+
+###
+POST {{HOST}}/register
+Content-Type: application/json
+
+{
+    "name": "Dr. Livesey",
+    "email": "{{EMAIL}}",
+    "password": "{{PASSWORD}}",
+    "confirmPassword": "{{PASSWORD}}"
+}
+
+###
+# @name login
+POST {{HOST}}/login
+Content-Type: application/json
+
+{
+    "email": "{{EMAIL}}",
+    "password": "{{PASSWORD}}"
+}
+
+###
+@authToken = {{login.response.body.token}}
+
+###
+GET {{HOST}}/posts
+Content-Type: application/json
+Accept: application/json
+x-access-token: {{authToken}}
+
+###
+POST {{HOST}}/posts
+Content-Type: application/json
+Accept: application/json
+x-access-token: {{authToken}}
+
+{
+    "title": "welcome to my first post",
+    "content": "this is the content of my post"
+}
+
+###
+GET {{HOST}}/posts/6
+Content-Type: application/json
+Accept: application/json
+x-access-token: {{authToken}}
+
+###
+PATCH  {{HOST}}/posts/1/publish
+x-access-token: {{authToken}}
+
+###
+GET {{HOST}}/posts/1/comments
+
+###
+POST {{HOST}}/posts/1/comments
+Content-Type: application/json
+x-access-token: {{authToken}}
+
+{
+    "content": "this is my first comment"
+}
